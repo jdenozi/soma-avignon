@@ -513,12 +513,13 @@ function soma_astra_footer_social() {
 }
 add_action('astra_footer_content_top', 'soma_astra_footer_social');
 
-// Replace Astra default copyright with TempoHub credit
-add_filter('astra_footer_copyright_default', function() {
-    return 'Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a>';
-});
-add_filter('astra_get_option_footer-copyright-editor', function() {
-    return 'Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a>';
+// Remove Astra default copyright and add TempoHub credit
+add_filter('astra_get_option_footer-copyright-editor', '__return_empty_string');
+add_filter('astra_footer_copyright_default', '__return_empty_string');
+add_action('astra_footer_content_bottom', function() {
+    echo '<div class="soma-footer-credits" style="text-align:center;padding:10px 0;">';
+    echo '<p>Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a></p>';
+    echo '</div>';
 });
 
 /* ============================================
