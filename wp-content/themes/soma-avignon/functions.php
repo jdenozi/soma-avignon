@@ -6,7 +6,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('SOMA_VERSION', '2.0.0');
+define('SOMA_VERSION', '2.0.1');
 define('SOMA_DIR', get_stylesheet_directory());
 define('SOMA_URI', get_stylesheet_directory_uri());
 
@@ -31,8 +31,8 @@ function soma_enqueue_assets() {
     // Main JS
     wp_enqueue_script('soma-main', SOMA_URI . '/js/main.js', array('jquery'), SOMA_VERSION, true);
 
-    // Cal.com Popup JS
-    wp_enqueue_script('soma-calcom', SOMA_URI . '/js/calcom-popup.js', array('jquery'), SOMA_VERSION, true);
+    // Cal.com Popup JS (vanilla, pas besoin de jQuery)
+    wp_enqueue_script('soma-calcom', SOMA_URI . '/js/calcom-popup.js', array(), SOMA_VERSION, true);
 
     // Pass PHP settings to JS
     wp_localize_script('soma-calcom', 'somaSettings', array(

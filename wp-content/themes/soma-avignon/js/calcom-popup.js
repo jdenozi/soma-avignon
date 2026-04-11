@@ -2,68 +2,100 @@
  * SOMA Avignon — Cal.com Popup
  * Ouvre un popup Cal.com pour la prise de RDV
  */
-jQuery(document).ready(function($) {
-    // URL Cal.com récupérée depuis le Customizer WordPress
-    var calcomURL = somaSettings.calcomUrl + "?embed=true&theme=light";
+(function() {
+    // Attendre que le DOM soit prêt
+    function init() {
+        var calcomURL = (typeof somaSettings !== 'undefined' && somaSettings.calcomUrl)
+            ? somaSettings.calcomUrl + "?embed=true&theme=light"
+            : null;
 
-    // Crée le popup avec iframe Cal.com
-    var popupHTML = '<div id="calcom-popup">' +
-        '<div class="popup-overlay"></div>' +
-        '<div class="popup-content">' +
-            '<button class="popup-close" aria-label="Fermer">&times;</button>' +
-            '<h2>Prenez un rendez-vous</h2>' +
-            '<iframe src="" data-src="' + calcomURL + '" width="100%" height="700" frameborder="0" style="border:none;" title="Réservation Cal.com"></iframe>' +
-        '</div>' +
-    '</div>';
-
-    $('body').append(popupHTML);
-
-    // Ouvre le popup au clic sur les boutons de RDV
-    function openPopup(e) {
-        e.preventDefault();
-        var $popup = $('#calcom-popup');
-        var $iframe = $popup.find('iframe');
-
-        // Lazy load l'iframe au premier clic
-        if (!$iframe.attr('src') || $iframe.attr('src') === '') {
-            $iframe.attr('src', $iframe.data('src'));
+        if (!calcomURL) {
+            console.warn('[SOMA] somaSettings.calcomUrl non défini');
+            return;
         }
 
-        $popup.show();
-        $('body').css('overflow', 'hidden');
+        // Créer le popup
+        var popup = document.createElement('div');
+        popup.id = 'calcom-popup';
+        popup.innerHTML =
+            '<div class="popup-overlay"></div>' +
+            '<div class="popup-content">' +
+                '<button class="popup-close" aria-label="Fermer">&times;</button>' +
+                '<h2>Prenez rendez-vous</h2>' +
+                '<iframe src="" data-src="' + calcomURL + '" width="100%" height="700" frameborder="0" style="border:none;" title="Réservation Cal.com"></iframe>' +
+            '</div>';
+        document.body.appendChild(popup);
+
+        // Ouvrir le popup
+        function openPopup(e) {
+            if (e) e.preventDefault();
+            var iframe = popup.querySelector('iframe');
+
+            // Lazy load iframe
+            if (!iframe.src || iframe.src === '' || iframe.src === window.location.href) {
+                iframe.src = iframe.getAttribute('data-src');
+            }
+
+            popup.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fermer le popup
+        function closePopup() {
+            popup.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Délégation d'événements sur tout le document
+        document.addEventListener('click', function(e) {
+            var el = e.target.closest('a, button');
+            if (!el) return;
+
+            // 1. Lien menu CTA (#rdv)
+            var href = el.getAttribute('href');
+            if (href === '#rdv' || href === '#RDV') {
+                openPopup(e);
+                return;
+            }
+
+            // 2. Classe .soma-rdv-btn
+            if (el.classList.contains('soma-rdv-btn')) {
+                openPopup(e);
+                return;
+            }
+
+            // 3. Bouton avec texte rendez-vous / réserver
+            if (el.classList.contains('wp-block-button__link') || el.classList.contains('btn-soma')) {
+                var text = el.textContent.trim().toLowerCase();
+                if (text.indexOf('rendez-vous') !== -1 ||
+                    text.indexOf('réserver') !== -1) {
+                    openPopup(e);
+                    return;
+                }
+            }
+
+            // 4. Fermer le popup
+            if (el.classList.contains('popup-close')) {
+                closePopup();
+                return;
+            }
+        });
+
+        // Fermer en cliquant sur l'overlay
+        popup.querySelector('.popup-overlay').addEventListener('click', closePopup);
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
     }
 
-    // Boutons WordPress (Gutenberg)
-    $(document).on('click', '.wp-block-button__link', function(e) {
-        var text = $(this).text().trim().toLowerCase();
-        if (text.indexOf('rendez-vous') !== -1 ||
-            text.indexOf('réserver') !== -1 ||
-            text.indexOf('commencez') !== -1) {
-            openPopup(e);
-        }
-    });
-
-    // Boutons shortcode
-    $(document).on('click', '.soma-rdv-btn', function(e) {
-        openPopup(e);
-    });
-
-    // Lien menu nav CTA (#rdv) et tout lien href="#rdv"
-    $(document).on('click', '.nav-cta a, a[href="#rdv"], a[href="#RDV"]', function(e) {
-        openPopup(e);
-    });
-
-    // Ferme le popup
-    $(document).on('click', '#calcom-popup .popup-close, #calcom-popup .popup-overlay', function() {
-        $('#calcom-popup').hide();
-        $('body').css('overflow', '');
-    });
-
-    // Ferme avec Escape
-    $(document).on('keydown', function(e) {
-        if (e.key === 'Escape') {
-            $('#calcom-popup').hide();
-            $('body').css('overflow', '');
-        }
-    });
-});
+    // Lancer quand le DOM est prêt
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
