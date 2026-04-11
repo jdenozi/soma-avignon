@@ -35,17 +35,21 @@ jQuery(document).ready(function($) {
 
     // Boutons WordPress (Gutenberg)
     $(document).on('click', '.wp-block-button__link', function(e) {
-        var text = $(this).text().trim();
-        if (text.indexOf('Prendre un rendez-vous') !== -1 ||
-            text.indexOf('Commencez') !== -1 ||
-            text.indexOf('Réserver') !== -1 ||
-            text.indexOf('rendez-vous') !== -1) {
+        var text = $(this).text().trim().toLowerCase();
+        if (text.indexOf('rendez-vous') !== -1 ||
+            text.indexOf('réserver') !== -1 ||
+            text.indexOf('commencez') !== -1) {
             openPopup(e);
         }
     });
 
     // Boutons shortcode
     $(document).on('click', '.soma-rdv-btn', function(e) {
+        openPopup(e);
+    });
+
+    // Lien menu nav CTA (#rdv) et tout lien href="#rdv"
+    $(document).on('click', '.nav-cta a, a[href="#rdv"], a[href="#RDV"]', function(e) {
         openPopup(e);
     });
 
