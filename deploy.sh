@@ -4,6 +4,16 @@ set -uo pipefail
 # ─── Configuration ───
 APP_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# ─── Detect docker compose command ───
+if docker compose version > /dev/null 2>&1; then
+  DC="docker compose"
+elif docker-compose version > /dev/null 2>&1; then
+  DC="docker-compose"
+else
+  echo "✗ Neither 'docker compose' nor 'docker-compose' found."
+  exit 1
+fi
+
 # ─── Usage ───
 usage() {
   echo "Usage: $0 <version>"
@@ -30,6 +40,7 @@ echo "╚═══════════════════════�
 echo ""
 echo "  Version:   $VERSION"
 echo "  Directory: $APP_DIR"
+echo "  Compose:   $DC"
 echo ""
 
 cd "$APP_DIR"
@@ -52,23 +63,23 @@ fi
 
 # ─── Rebuild and restart containers ───
 echo "→ Building and restarting containers..."
-docker compose down
-docker compose build --no-cache
-docker compose up -d
+$DC down
+$DC build --no-cache
+$DC up -d
 
 # ─── Verify ───
 echo ""
 echo "→ Waiting for containers to start..."
 sleep 5
 
-if docker compose ps | grep -qE "running|Up"; then
+if $DC ps | grep -qE "running|Up"; then
   echo ""
   echo "✓ Deploy complete — $VERSION is live"
   echo ""
-  docker compose ps
+  $DC ps
 else
   echo ""
   echo "✗ Container failed to start. Logs:"
-  docker compose logs --tail=30
+  $DC logs --tail=30
   exit 1
 fi
