@@ -64,8 +64,14 @@ rm -f /tmp/soma-import.sql
 # ─── Copy versioned uploads ───
 if [ -d "$APP_DIR/wp-content/uploads" ]; then
   echo "→ Copie des uploads versionnés..."
-  $DC cp "$APP_DIR/wp-content/uploads/." wordpress:/var/www/html/wp-content/uploads/
+  # Create target dirs and copy file by file for maximum compatibility
+  $DC exec -T wordpress mkdir -p /var/www/html/wp-content/uploads/2026/04/
+  for f in "$APP_DIR"/wp-content/uploads/2026/04/*.webp; do
+    [ -f "$f" ] || continue
+    $DC cp "$f" "wordpress:/var/www/html/wp-content/uploads/2026/04/$(basename "$f")"
+  done
   $DC exec -T wordpress chown -R www-data:www-data /var/www/html/wp-content/uploads/
+  echo "  ✓ $(ls "$APP_DIR"/wp-content/uploads/2026/04/*.webp 2>/dev/null | wc -l) fichiers copiés"
 fi
 
 # ─── Install WP-CLI and flush ───
