@@ -299,7 +299,15 @@ function soma_prestations_shortcode($atts) {
         $query->the_post();
         $price    = get_post_meta(get_the_ID(), '_soma_price', true);
         $duration = get_post_meta(get_the_ID(), '_soma_duration', true);
-        $thumb    = get_the_post_thumbnail_url(get_the_ID(), 'service-card');
+        // Try WP thumbnail, verify the file actually exists on disk
+        $thumb = '';
+        $thumb_id = get_post_thumbnail_id(get_the_ID());
+        if ($thumb_id) {
+            $file = get_attached_file($thumb_id);
+            if ($file && file_exists($file)) {
+                $thumb = get_the_post_thumbnail_url(get_the_ID(), 'service-card');
+            }
+        }
         // Fallback: image in theme img/ folder based on post slug
         if (!$thumb) {
             $slug = get_post_field('post_name', get_the_ID());
