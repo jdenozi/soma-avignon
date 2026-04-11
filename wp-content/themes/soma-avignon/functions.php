@@ -92,7 +92,7 @@ function soma_customizer_register($wp_customize) {
     ));
 
     $social_fields = array(
-        'soma_instagram' => array('label' => 'URL Instagram', 'default' => 'https://www.instagram.com/'),
+        'soma_instagram' => array('label' => 'URL Instagram', 'default' => 'https://www.instagram.com/soma.avignon/'),
         'soma_facebook'  => array('label' => 'URL Facebook',  'default' => ''),
     );
 
