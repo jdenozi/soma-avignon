@@ -22,18 +22,21 @@
             '<div class="popup-content">' +
                 '<button class="popup-close" aria-label="Fermer">&times;</button>' +
                 '<h2>Prenez rendez-vous</h2>' +
-                '<iframe src="" data-src="' + calcomURL + '" width="100%" height="700" frameborder="0" style="border:none;" title="Réservation Cal.com"></iframe>' +
+                '<iframe width="100%" height="700" frameborder="0" style="border:none;" title="Réservation Cal.com"></iframe>' +
             '</div>';
         document.body.appendChild(popup);
+
+        var iframeLoaded = false;
 
         // Ouvrir le popup
         function openPopup(e) {
             if (e) e.preventDefault();
-            var iframe = popup.querySelector('iframe');
 
-            // Lazy load iframe
-            if (!iframe.src || iframe.src === '' || iframe.src === window.location.href) {
-                iframe.src = iframe.getAttribute('data-src');
+            // Charger l'iframe au premier clic
+            if (!iframeLoaded) {
+                var iframe = popup.querySelector('iframe');
+                iframe.src = calcomURL;
+                iframeLoaded = true;
             }
 
             popup.style.display = 'block';

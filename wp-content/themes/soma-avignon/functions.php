@@ -6,7 +6,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('SOMA_VERSION', '2.0.1');
+define('SOMA_VERSION', '2.0.2');
 define('SOMA_DIR', get_stylesheet_directory());
 define('SOMA_URI', get_stylesheet_directory_uri());
 
