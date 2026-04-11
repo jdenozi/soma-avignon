@@ -11,12 +11,16 @@ else
   exit 1
 fi
 
-WP="$DC exec -T wordpress wp --allow-root"
-
 echo "╔══════════════════════════════════════╗"
 echo "║  SOMA Avignon — Setup               ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
+
+# ─── Install WP-CLI in container ───
+echo "→ Installation de WP-CLI dans le container..."
+$DC exec -T wordpress bash -c 'which wp > /dev/null 2>&1 || (curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && echo "  WP-CLI installé")'
+
+WP="$DC exec -T wordpress wp --allow-root"
 
 # ─── Wait for WordPress to be ready ───
 echo "→ Attente de WordPress..."
@@ -172,10 +176,6 @@ if [ -z "$EXISTING_TEMO" ]; then
 else
   echo "  Témoignages déjà existants, skip"
 fi
-
-# ─── WP-CLI dans le container ───
-echo "→ Installation de WP-CLI dans le container..."
-$DC exec -T wordpress bash -c 'which wp || (curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp)' 2>/dev/null || true
 
 echo ""
 echo "╔══════════════════════════════════════╗"
