@@ -1,0 +1,124 @@
+<!--
+    SOMA Avignon — Page Paiement (WP Simple Pay)
+    À copier-coller dans l'éditeur WordPress (mode Code/HTML)
+    Plugin requis : WP Simple Pay (Lite ou Pro)
+    Theme: Child Astra — SOMA Avignon v2.0
+-->
+
+<!-- HEADER -->
+<!-- wp:group {"className":"soma-page-header","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-page-header">
+    <!-- wp:paragraph {"align":"center","className":"soma-subtitle"} -->
+    <p class="has-text-align-center soma-subtitle">Paiement sécurisé</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"textAlign":"center","level":1} -->
+    <h1 class="wp-block-heading has-text-align-center">Régler votre séance</h1>
+    <!-- /wp:heading -->
+
+    <!-- wp:separator {"className":"soma-divider"} -->
+    <hr class="wp-block-separator has-alpha-channel-opacity soma-divider"/>
+    <!-- /wp:separator -->
+
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">Payez en toute sécurité via Stripe. Vos données bancaires ne sont jamais stockées sur notre site.</p>
+    <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- FORMULAIRE WP SIMPLE PAY -->
+<!-- wp:group {"className":"soma-section soma-section-white","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-white">
+    <div class="soma-payment-wrapper">
+
+        <!-- wp:shortcode -->
+        [soma_payment]
+        <!-- /wp:shortcode -->
+
+        <!--
+            OU insérez directement le shortcode WP Simple Pay :
+            [simpay id="VOTRE_ID"]
+
+            Pour créer un formulaire :
+            1. WordPress Admin → WP Simple Pay → Add New
+            2. Choisir "Payment Form"
+            3. Configurer le montant ou laisser le client choisir
+            4. Copier l'ID du formulaire ici ou dans le Customizer
+               (Apparence → Personnaliser → SOMA — Réservation & Paiement)
+        -->
+
+    </div>
+</div>
+<!-- /wp:group -->
+
+<!-- INFOS COMPLÉMENTAIRES -->
+<!-- wp:group {"className":"soma-section soma-section-beige soma-fade-in","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-beige soma-fade-in">
+    <!-- wp:columns {"className":"soma-stagger"} -->
+    <div class="wp-block-columns soma-stagger">
+        <!-- wp:column -->
+        <div class="wp-block-column" style="text-align:center;">
+            <!-- wp:html -->
+            <div class="soma-payment-feature">
+                <div class="soma-contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                </div>
+                <h4>Paiement sécurisé</h4>
+                <p>Vos transactions sont protégées par Stripe, leader mondial du paiement en ligne.</p>
+            </div>
+            <!-- /wp:html -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column -->
+        <div class="wp-block-column" style="text-align:center;">
+            <!-- wp:html -->
+            <div class="soma-payment-feature">
+                <div class="soma-contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h4>Données protégées</h4>
+                <p>Aucune information bancaire n'est stockée sur notre site.</p>
+            </div>
+            <!-- /wp:html -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column -->
+        <div class="wp-block-column" style="text-align:center;">
+            <!-- wp:html -->
+            <div class="soma-payment-feature">
+                <div class="soma-contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h4>Confirmation immédiate</h4>
+                <p>Vous recevez une confirmation par email dès que le paiement est validé.</p>
+            </div>
+            <!-- /wp:html -->
+        </div>
+        <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+</div>
+<!-- /wp:group -->
+
+<!-- CTA -->
+<!-- wp:group {"className":"soma-section soma-section-terracotta","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-terracotta">
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Une question sur le paiement ?</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">N'hésitez pas à nous contacter si vous avez besoin d'aide.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+    <div class="wp-block-buttons">
+        <!-- wp:button {"style":{"color":{"background":"#ffffff","text":"#c47a5a"}}} -->
+        <div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background wp-element-button" style="color:#c47a5a;background-color:#ffffff" href="/contact/">Nous contacter</a></div>
+        <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->

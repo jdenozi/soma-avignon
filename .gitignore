@@ -1,0 +1,20 @@
+# IDE
+.idea/
+
+# Node
+node_modules/
+
+# Docker volumes
+db_data/
+wp_data/
+
+# WordPress uploads (managed separately)
+wp-content/uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*

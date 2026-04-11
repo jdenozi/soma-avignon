@@ -1,0 +1,241 @@
+<!--
+    SOMA Avignon — Contenu Page d'Accueil
+    À copier-coller dans l'éditeur WordPress (mode Code/HTML)
+    pour la page définie comme "Page d'accueil statique"
+    Theme: Child Astra — SOMA Avignon v2.0
+-->
+
+<!-- HERO SPLIT — Texte à gauche, photo à droite
+     ⚠ Remplacez /wp-content/themes/soma-avignon/img/preview.webp par l'URL
+     de votre photo uploadée dans Médias → Ajouter.
+-->
+<!-- wp:html -->
+<section class="soma-hero-split">
+    <div class="soma-hero-split__text">
+        <p class="soma-subtitle">Bien-être &amp; Sérénité</p>
+        <h1>Massage énergétique crânien &amp; Coiffure <em>à Avignon</em></h1>
+        <div class="soma-hero-split__line"></div>
+        <p class="soma-hero-split__desc">Un espace dédié à votre bien-être, où le soin du corps et de l'esprit se rencontrent dans une approche holistique et bienveillante.</p>
+        <div class="soma-hero-split__buttons">
+            <a href="#" class="wp-block-button__link soma-rdv-btn">Prendre rendez-vous</a>
+            <a href="#prestations" class="soma-hero-split__link">Découvrir nos soins &rarr;</a>
+        </div>
+    </div>
+    <div class="soma-hero-split__image">
+        <div class="soma-hero-split__frame">
+            <img src="/wp-content/themes/soma-avignon/img/preview.webp" alt="SOMA Avignon — Espace bien-être" loading="eager"/>
+        </div>
+        <div class="soma-hero-split__deco soma-hero-split__deco--circle"></div>
+        <div class="soma-hero-split__deco soma-hero-split__deco--dots"></div>
+    </div>
+</section>
+<!-- /wp:html -->
+
+<!-- BANDEAU DÉFILANT -->
+<!-- wp:shortcode -->
+[soma_marquee items="Massage énergétique crânien,Bien-être holistique,Coiffure,Soins sur mesure,Reconnexion à soi,Avignon"]
+<!-- /wp:shortcode -->
+
+<!-- PRÉSENTATION RAPIDE -->
+<!-- wp:group {"className":"soma-section soma-section-white","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-white">
+    <!-- wp:columns {"verticalAlignment":"center"} -->
+    <div class="wp-block-columns are-vertically-aligned-center">
+        <!-- wp:column {"verticalAlignment":"center","className":"soma-fade-in-left"} -->
+        <div class="wp-block-column is-vertically-aligned-center soma-fade-in-left">
+            <!-- wp:image {"sizeSlug":"large","className":"soma-about-img"} -->
+            <figure class="wp-block-image size-large soma-about-img">
+                <img src="/wp-content/themes/soma-avignon/img/preview3.webp" alt="Espace de soin SOMA Avignon"/>
+            </figure>
+            <!-- /wp:image -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"verticalAlignment":"center","className":"soma-fade-in-right"} -->
+        <div class="wp-block-column is-vertically-aligned-center soma-fade-in-right">
+            <!-- wp:paragraph {"className":"soma-subtitle"} -->
+            <p class="soma-subtitle">Bienvenue</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:heading {"level":2} -->
+            <h2 class="wp-block-heading">Un soin pour le corps<br>et l'esprit</h2>
+            <!-- /wp:heading -->
+
+            <!-- wp:separator {"className":"soma-divider"} -->
+            <hr class="wp-block-separator has-alpha-channel-opacity soma-divider" style="margin-left:0!important;"/>
+            <!-- /wp:separator -->
+
+            <!-- wp:paragraph -->
+            <p>Praticienne en massage énergétique crânien et coiffeuse, je vous accueille dans un espace chaleureux à Avignon pour des soins personnalisés qui allient bien-être et beauté.</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:paragraph -->
+            <p>Chaque soin est un moment unique de détente et de reconnexion, adapté à vos besoins. Que ce soit pour un massage crânien, un soin prénatal ou postnatal, je vous accompagne avec douceur et bienveillance.</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"className":"is-style-outline"} -->
+                <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/a-propos/">En savoir plus</a></div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+</div>
+<!-- /wp:group -->
+
+<!-- PRESTATIONS -->
+<!-- wp:group {"className":"soma-section soma-section-beige","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-beige" id="prestations">
+    <!-- wp:paragraph {"align":"center","className":"soma-subtitle"} -->
+    <p class="has-text-align-center soma-subtitle">Nos soins</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Prestations &amp; Rituels</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:separator {"className":"soma-divider"} -->
+    <hr class="wp-block-separator has-alpha-channel-opacity soma-divider"/>
+    <!-- /wp:separator -->
+
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">Des soins sur mesure pour accompagner votre bien-être au quotidien.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:shortcode -->
+    [soma_prestations limit="3"]
+    <!-- /wp:shortcode -->
+
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2.5rem"}}}} -->
+    <div class="wp-block-buttons" style="margin-top:2.5rem">
+        <!-- wp:button {"className":"is-style-outline"} -->
+        <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/prestations/">Voir toutes les prestations</a></div>
+        <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+
+<!-- COMPTEURS / CHIFFRES CLÉS -->
+<!-- wp:group {"className":"soma-section soma-section-terracotta","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-terracotta">
+    <!-- wp:paragraph {"align":"center","className":"soma-subtitle","style":{"elements":{"link":{"color":{"text":"rgba(255,255,255,0.7)"}}}}} -->
+    <p class="has-text-align-center soma-subtitle" style="color:rgba(255,255,255,0.7)!important;">En quelques chiffres</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Notre engagement envers vous</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:shortcode -->
+    [soma_stats items="500+|Clientes accompagnées,5|Années d'expérience,15+|Soins proposés,100%|Bienveillance"]
+    <!-- /wp:shortcode -->
+</div>
+<!-- /wp:group -->
+
+<!-- CITATION -->
+<!-- wp:group {"className":"soma-section soma-section-white soma-fade-in","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-white soma-fade-in">
+    <!-- wp:html -->
+    <p class="soma-big-quote">Le vrai voyage de découverte ne consiste pas à chercher de nouveaux paysages, mais à avoir de nouveaux yeux.</p>
+    <p style="text-align:center;font-size:0.85rem;color:var(--soma-camel-dark);font-weight:500;letter-spacing:0.05em;">— Marcel Proust</p>
+    <!-- /wp:html -->
+</div>
+<!-- /wp:group -->
+
+<!-- TÉMOIGNAGES -->
+<!-- wp:group {"className":"soma-section soma-section-beige soma-fade-in","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-beige soma-fade-in">
+    <!-- wp:paragraph {"align":"center","className":"soma-subtitle"} -->
+    <p class="has-text-align-center soma-subtitle">Témoignages</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Ce que disent nos client(e)s</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:separator {"className":"soma-divider"} -->
+    <hr class="wp-block-separator has-alpha-channel-opacity soma-divider"/>
+    <!-- /wp:separator -->
+
+    <!-- wp:shortcode -->
+    [soma_temoignages limit="3"]
+    <!-- /wp:shortcode -->
+</div>
+<!-- /wp:group -->
+
+<!-- CTA RÉSERVATION -->
+<!-- wp:group {"className":"soma-section soma-section-terracotta","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-terracotta">
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Prêt(e) à prendre soin de vous ?</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">Réservez votre séance et offrez-vous un moment de détente et de reconnexion.</p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+    <div class="wp-block-buttons">
+        <!-- wp:button {"style":{"color":{"background":"#ffffff","text":"#c47a5a"}}} -->
+        <div class="wp-block-button"><a class="wp-block-button__link has-text-color has-background wp-element-button" style="color:#c47a5a;background-color:#ffffff">Réserver maintenant</a></div>
+        <!-- /wp:button -->
+
+        <!-- wp:button {"style":{"color":{"background":"#b8964e"}}} -->
+        <div class="wp-block-button"><a class="wp-block-button__link has-background wp-element-button" style="background-color:#b8964e" href="/paiement/">Payer en ligne</a></div>
+        <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+
+<!-- COLLABORATION ATELIER SOMA -->
+<!-- wp:group {"className":"soma-section soma-section-white","layout":{"type":"constrained"}} -->
+<div class="wp-block-group soma-section soma-section-white">
+    <!-- wp:columns {"verticalAlignment":"center"} -->
+    <div class="wp-block-columns are-vertically-aligned-center">
+        <!-- wp:column {"verticalAlignment":"center","className":"soma-fade-in-left"} -->
+        <div class="wp-block-column is-vertically-aligned-center soma-fade-in-left">
+            <!-- wp:paragraph {"className":"soma-subtitle"} -->
+            <p class="soma-subtitle">Collaboration</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:heading {"level":2} -->
+            <h2 class="wp-block-heading">En partenariat avec<br>Atelier SOMA</h2>
+            <!-- /wp:heading -->
+
+            <!-- wp:separator {"className":"soma-divider"} -->
+            <hr class="wp-block-separator has-alpha-channel-opacity soma-divider" style="margin-left:0!important;"/>
+            <!-- /wp:separator -->
+
+            <!-- wp:paragraph -->
+            <p>Notre collaboration avec Atelier SOMA à Boulogne-Billancourt nous permet de partager une vision commune du bien-être holistique. Découvrez comment nos pratiques se complètent pour vous offrir une expérience complète de soin et de transformation.</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"className":"is-style-outline"} -->
+                <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/collaboration-atelier-soma/">Découvrir la collaboration</a></div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"verticalAlignment":"center","className":"soma-fade-in-right"} -->
+        <div class="wp-block-column is-vertically-aligned-center soma-fade-in-right">
+            <!-- wp:image {"sizeSlug":"large","className":"soma-about-img"} -->
+            <figure class="wp-block-image size-large soma-about-img">
+                <img src="/wp-content/themes/soma-avignon/img/preview4.webp" alt="Collaboration Atelier SOMA"/>
+            </figure>
+            <!-- /wp:image -->
+        </div>
+        <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+</div>
+<!-- /wp:group -->

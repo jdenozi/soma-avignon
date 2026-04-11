@@ -1,0 +1,1769 @@
+/*
+Theme Name: SOMA Avignon
+Template: astra
+Theme URI: https://soma-avignon.fr
+Author: Julien Denozi
+Description: Child theme Astra pour SOMA Avignon — Massage énergétique crânien, bien-être et coiffure. Inspiré d'ateliersoma.fr.
+Version: 2.0.0
+Text Domain: soma-avignon
+*/
+
+/* ============================================
+   Variables
+   ============================================ */
+:root {
+    --soma-beige: #F5F0EB;
+    --soma-beige-light: #FAF7F4;
+    --soma-beige-dark: #E8DFD5;
+    --soma-camel: #C4A882;
+    --soma-camel-dark: #A68B6B;
+    --soma-terracotta: #B8704C;
+    --soma-terracotta-dark: #9C5D3E;
+    --soma-terracotta-light: #C47A5A;
+    --soma-text: #3D3029;
+    --soma-text-light: #6B5D52;
+    --soma-gold: #B8964E;
+    --soma-white: #FFFFFF;
+    --soma-shadow-sm: 0 1px 3px rgba(61,48,41,0.06);
+    --soma-shadow-md: 0 4px 16px rgba(61,48,41,0.08);
+    --soma-shadow-lg: 0 8px 30px rgba(61,48,41,0.12);
+    --soma-shadow-xl: 0 20px 50px rgba(61,48,41,0.15);
+    --soma-radius: 4px;
+    --soma-radius-lg: 12px;
+    --soma-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --soma-transition-slow: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --soma-container: 1140px;
+}
+
+/* ============================================
+   Base
+   ============================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+body.flavor-flavor {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--soma-text);
+    background-color: var(--soma-white);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.ast-archive-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    color: var(--soma-text);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    color: var(--soma-text-light);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+}
+
+a {
+    color: var(--soma-terracotta);
+    transition: color var(--soma-transition);
+}
+a:hover {
+    color: var(--soma-terracotta-dark);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+::selection {
+    background-color: var(--soma-camel);
+    color: var(--soma-white);
+}
+
+/* ============================================
+   Astra Header
+   ============================================ */
+.ast-primary-header,
+.site-header,
+.ast-above-header {
+    background-color: var(--soma-white) !important;
+    border-bottom: 1px solid var(--soma-beige-dark);
+    box-shadow: none;
+    transition: all 0.4s ease;
+}
+
+.site-header.soma-scrolled,
+.ast-primary-header.soma-scrolled {
+    box-shadow: var(--soma-shadow-md);
+    border-bottom-color: transparent;
+}
+
+.site-title a,
+.ast-site-identity .site-title a {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--soma-text) !important;
+    font-weight: 600;
+    transition: color var(--soma-transition);
+}
+
+.main-header-menu a,
+.ast-header-navigation a,
+.ast-nav-menu a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: var(--soma-text-light) !important;
+    padding: 8px 14px !important;
+    transition: color var(--soma-transition);
+    position: relative;
+}
+
+.main-header-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--soma-terracotta);
+    transition: all var(--soma-transition);
+    transform: translateX(-50%);
+}
+
+.main-header-menu a:hover::after,
+.main-header-menu .current-menu-item > a::after,
+.main-header-menu .current_page_item > a::after {
+    width: 60%;
+}
+
+.main-header-menu a:hover,
+.main-header-menu .current-menu-item > a,
+.main-header-menu .current_page_item > a {
+    color: var(--soma-terracotta) !important;
+}
+
+/* Menu CTA (Prendre RDV) */
+.nav-cta > a {
+    background-color: var(--soma-terracotta) !important;
+    color: var(--soma-white) !important;
+    border-radius: var(--soma-radius) !important;
+    padding: 8px 22px !important;
+    font-size: 0.75rem !important;
+    transition: all var(--soma-transition);
+}
+.nav-cta > a::after {
+    display: none !important;
+}
+.nav-cta > a:hover {
+    background-color: var(--soma-terracotta-dark) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(184,112,76,0.3);
+}
+
+/* ============================================
+   Boutons globaux
+   ============================================ */
+.wp-block-button__link,
+.ast-button,
+input[type="submit"],
+.btn-soma,
+.soma-rdv-btn {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: var(--soma-radius) !important;
+    padding: 14px 32px !important;
+    transition: all var(--soma-transition);
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+}
+
+.wp-block-button__link,
+.ast-button,
+input[type="submit"],
+.btn-soma,
+.soma-rdv-btn {
+    background-color: var(--soma-terracotta) !important;
+    color: var(--soma-white) !important;
+    border: 2px solid var(--soma-terracotta) !important;
+}
+
+/* Shine effect on buttons */
+.wp-block-button__link::before,
+.btn-soma::before,
+.soma-rdv-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s ease;
+}
+.wp-block-button__link:hover::before,
+.btn-soma:hover::before,
+.soma-rdv-btn:hover::before {
+    left: 100%;
+}
+
+.wp-block-button__link:hover,
+.ast-button:hover,
+input[type="submit"]:hover,
+.btn-soma:hover,
+.soma-rdv-btn:hover {
+    background-color: var(--soma-terracotta-dark) !important;
+    border-color: var(--soma-terracotta-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184,112,76,0.25);
+}
+
+.is-style-outline .wp-block-button__link {
+    background: transparent !important;
+    color: var(--soma-terracotta) !important;
+    border: 2px solid var(--soma-terracotta) !important;
+}
+.is-style-outline .wp-block-button__link:hover {
+    background-color: var(--soma-terracotta) !important;
+    color: var(--soma-white) !important;
+    transform: translateY(-2px);
+}
+
+/* Bouton blanc (sur fond terracotta) */
+.wp-block-button__link.has-background[style*="background-color:#ffffff"],
+.wp-block-button__link.has-background[style*="background-color: #ffffff"] {
+    border: 2px solid var(--soma-white) !important;
+}
+.wp-block-button__link.has-background[style*="background-color:#ffffff"]:hover {
+    background-color: transparent !important;
+    color: var(--soma-white) !important;
+}
+
+/* Bouton Stripe/gold */
+.wp-block-button__link[style*="background-color:#B8964E"],
+.wp-block-button__link[style*="background-color:#b8964e"] {
+    border: 2px solid var(--soma-gold) !important;
+}
+.wp-block-button__link[style*="background-color:#B8964E"]:hover,
+.wp-block-button__link[style*="background-color:#b8964e"]:hover {
+    background-color: #9F7E3E !important;
+    border-color: #9F7E3E !important;
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+.soma-section {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.soma-section-white {
+    background-color: var(--soma-white);
+}
+
+.soma-section-beige {
+    background-color: var(--soma-beige-light);
+}
+
+.soma-section-terracotta {
+    background: linear-gradient(135deg, var(--soma-terracotta) 0%, var(--soma-terracotta-dark) 100%);
+    color: var(--soma-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.soma-section-terracotta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+}
+
+.soma-section-terracotta::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    pointer-events: none;
+}
+
+.soma-section-terracotta h2,
+.soma-section-terracotta h3 {
+    color: var(--soma-white) !important;
+}
+
+.soma-section-terracotta p {
+    color: rgba(255,255,255,0.85) !important;
+}
+
+/* ============================================
+   Section subtitles & dividers
+   ============================================ */
+.soma-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--soma-terracotta);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.soma-divider,
+.wp-block-separator.soma-divider {
+    max-width: 60px !important;
+    border-color: var(--soma-camel) !important;
+    border-width: 2px !important;
+    opacity: 1 !important;
+    margin: 1.5rem auto !important;
+}
+
+.wp-block-separator.is-style-wide {
+    max-width: 60px !important;
+    border-color: var(--soma-camel) !important;
+    border-width: 2px !important;
+    opacity: 1 !important;
+}
+
+/* Masquer le titre de page sur l'accueil */
+.home .entry-title,
+.home .page-title,
+.home .ast-archive-title,
+.page-template-default.home .entry-header {
+    display: none !important;
+}
+
+/* ============================================
+   HERO SPLIT — Texte gauche + Photo droite
+   ============================================ */
+.soma-hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    background-color: var(--soma-beige-light);
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── Partie texte (gauche) ── */
+.soma-hero-split__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem 6rem 8%;
+    max-width: 680px;
+    margin-left: auto;
+    animation: soma-hero-text-in 1s ease both;
+}
+
+@keyframes soma-hero-text-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.soma-hero-split__text .soma-subtitle {
+    margin-bottom: 1rem;
+}
+
+.soma-hero-split__text h1 {
+    font-size: 3rem;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    margin-bottom: 0;
+    color: var(--soma-text);
+}
+
+.soma-hero-split__text h1 em {
+    font-style: italic;
+    color: var(--soma-terracotta);
+}
+
+.soma-hero-split__line {
+    width: 50px;
+    height: 2px;
+    background-color: var(--soma-camel);
+    margin: 1.8rem 0;
+}
+
+.soma-hero-split__desc {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--soma-text-light);
+    margin-bottom: 2rem;
+    max-width: 460px;
+}
+
+.soma-hero-split__buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.soma-hero-split__link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--soma-terracotta) !important;
+    text-decoration: none;
+    transition: all var(--soma-transition);
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.soma-hero-split__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--soma-terracotta);
+    transition: width var(--soma-transition);
+}
+
+.soma-hero-split__link:hover::after {
+    width: 100%;
+}
+
+.soma-hero-split__link:hover {
+    color: var(--soma-terracotta-dark) !important;
+}
+
+/* ── Partie image (droite) ── */
+.soma-hero-split__image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.soma-hero-split__frame {
+    position: relative;
+    width: 90%;
+    max-width: 540px;
+    border-radius: var(--soma-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--soma-shadow-xl);
+    z-index: 2;
+    animation: soma-hero-img-in 1.2s ease 0.2s both;
+}
+
+@keyframes soma-hero-img-in {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.soma-hero-split__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 3/4;
+}
+
+/* Décoration — Cercle beige */
+.soma-hero-split__deco--circle {
+    position: absolute;
+    top: 8%;
+    right: -5%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 2px solid var(--soma-camel);
+    opacity: 0.2;
+    z-index: 1;
+    animation: soma-hero-deco-in 1.5s ease 0.5s both;
+}
+
+/* Décoration — Grille de points */
+.soma-hero-split__deco--dots {
+    position: absolute;
+    bottom: 12%;
+    left: 5%;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+    opacity: 0.15;
+    background-image: radial-gradient(var(--soma-camel) 2px, transparent 2px);
+    background-size: 14px 14px;
+    animation: soma-hero-deco-in 1.5s ease 0.7s both;
+}
+
+@keyframes soma-hero-deco-in {
+    from { opacity: 0; }
+    to   { opacity: 0.2; }
+}
+
+/* ============================================
+   Page header for inner pages
+   ============================================ */
+.soma-page-header {
+    text-align: center;
+    padding: 6rem 2rem 3rem;
+    background-color: var(--soma-beige-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.soma-page-header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(196,168,130,0.06);
+    pointer-events: none;
+}
+
+.soma-page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--soma-camel), transparent);
+    opacity: 0.3;
+}
+
+.soma-page-header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+}
+
+.soma-page-header p:not(.soma-subtitle) {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Section présentation — image + texte
+   ============================================ */
+.soma-intro .wp-block-gallery {
+    gap: 1rem;
+}
+
+.soma-intro .wp-block-gallery img {
+    border-radius: var(--soma-radius);
+    transition: transform 0.5s ease;
+}
+
+.soma-intro .wp-block-gallery img:hover {
+    transform: scale(1.03);
+}
+
+.soma-about-img img {
+    border-radius: var(--soma-radius-lg);
+    box-shadow: var(--soma-shadow-xl);
+    transition: transform var(--soma-transition-slow);
+}
+
+.soma-about-img img:hover {
+    transform: scale(1.02);
+}
+
+/* Decorative frame behind about images */
+.soma-about-img {
+    position: relative;
+}
+
+.soma-about-img::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: 12px;
+    bottom: 12px;
+    border: 2px solid var(--soma-camel);
+    border-radius: var(--soma-radius-lg);
+    opacity: 0.3;
+    z-index: -1;
+    transition: all var(--soma-transition-slow);
+}
+
+.soma-about-img:hover::before {
+    top: -8px;
+    left: -8px;
+    opacity: 0.5;
+}
+
+/* ============================================
+   Services — Grid
+   ============================================ */
+.soma-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.soma-service-card {
+    background: var(--soma-white);
+    border: 1px solid var(--soma-beige-dark);
+    border-radius: var(--soma-radius-lg);
+    overflow: hidden;
+    transition: all var(--soma-transition);
+    text-align: center;
+    position: relative;
+}
+
+.soma-service-card:hover {
+    box-shadow: var(--soma-shadow-xl);
+    transform: translateY(-6px);
+    border-color: var(--soma-camel);
+}
+
+.soma-service-card .soma-card-img {
+    overflow: hidden;
+    height: 280px;
+    position: relative;
+}
+
+/* Gradient overlay on card images */
+.soma-service-card .soma-card-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(61,48,41,0.15), transparent);
+    pointer-events: none;
+    transition: opacity var(--soma-transition);
+}
+
+.soma-service-card:hover .soma-card-img::after {
+    opacity: 0;
+}
+
+.soma-service-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.soma-service-card:hover img {
+    transform: scale(1.08);
+}
+
+.soma-service-card-content {
+    padding: 2rem 1.5rem;
+}
+
+.soma-service-card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    transition: color var(--soma-transition);
+}
+
+.soma-service-card:hover .soma-service-card-content h3 {
+    color: var(--soma-terracotta);
+}
+
+.soma-service-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    color: var(--soma-terracotta);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.soma-service-duration {
+    font-size: 0.78rem;
+    color: var(--soma-camel-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--soma-beige-light);
+    border-radius: 20px;
+}
+
+.soma-service-card .soma-rdv-btn {
+    font-size: 0.75rem !important;
+    padding: 10px 22px !important;
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   Compteurs animés (stats section)
+   ============================================ */
+.soma-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.soma-stat-item {
+    padding: 2rem 1rem;
+}
+
+.soma-stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--soma-terracotta);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.soma-section-terracotta .soma-stat-number {
+    color: var(--soma-white);
+}
+
+.soma-stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--soma-text-light);
+    font-weight: 500;
+}
+
+.soma-section-terracotta .soma-stat-label {
+    color: rgba(255,255,255,0.7);
+}
+
+/* ============================================
+   Témoignages — Carrousel
+   ============================================ */
+.soma-testimonials-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 0 3rem;
+}
+
+.soma-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.soma-testimonial {
+    background: var(--soma-white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--soma-radius-lg);
+    border: 1px solid var(--soma-beige-dark);
+    text-align: center;
+    transition: all var(--soma-transition);
+    position: relative;
+}
+
+.soma-testimonial:hover {
+    box-shadow: var(--soma-shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--soma-camel);
+}
+
+.soma-testimonial::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--soma-camel);
+    display: block;
+    line-height: 0.6;
+    opacity: 0.3;
+    margin-bottom: 0.8rem;
+}
+
+.soma-testimonial-text {
+    font-style: italic;
+    color: var(--soma-text-light);
+    font-size: 0.95rem;
+    line-height: 1.85;
+}
+
+.soma-testimonial-author {
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--soma-text);
+    margin-top: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+.soma-stars {
+    color: var(--soma-gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+}
+
+/* ============================================
+   Image Gallery / Galerie
+   ============================================ */
+.soma-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.soma-gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--soma-radius);
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+
+.soma-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.soma-gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.soma-gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(61,48,41,0.4), transparent);
+    opacity: 0;
+    transition: opacity var(--soma-transition);
+}
+
+.soma-gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Make first item span 2 rows */
+.soma-gallery-item:first-child {
+    grid-row: span 2;
+    aspect-ratio: auto;
+}
+
+/* ============================================
+   Newsletter section
+   ============================================ */
+.soma-newsletter {
+    text-align: center;
+}
+
+.soma-newsletter-form {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.soma-newsletter input[type="email"] {
+    padding: 14px 18px;
+    border: 1px solid var(--soma-beige-dark);
+    border-radius: var(--soma-radius);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    width: 320px;
+    max-width: 100%;
+    transition: border-color var(--soma-transition), box-shadow var(--soma-transition);
+}
+
+.soma-newsletter input[type="email"]:focus {
+    outline: none;
+    border-color: var(--soma-camel);
+    box-shadow: 0 0 0 3px rgba(196,168,130,0.15);
+}
+
+/* ============================================
+   Animations — Fade in variants
+   ============================================ */
+.soma-fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.soma-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.soma-fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.soma-fade-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.soma-fade-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.soma-fade-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scale in */
+.soma-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.soma-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger children */
+.soma-stagger > * {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.soma-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+.soma-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; }
+.soma-stagger.visible > *:nth-child(3) { transition-delay: 0.24s; }
+.soma-stagger.visible > *:nth-child(4) { transition-delay: 0.36s; }
+.soma-stagger.visible > *:nth-child(5) { transition-delay: 0.48s; }
+.soma-stagger.visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+.soma-stagger.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   Parallax layer (JS-driven)
+   ============================================ */
+.soma-parallax {
+    overflow: hidden;
+    position: relative;
+}
+
+.soma-parallax-bg {
+    position: absolute;
+    inset: -20% 0;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+}
+
+/* ============================================
+   Valeurs / Features — 3 colonnes
+   ============================================ */
+.soma-values {
+    text-align: center;
+}
+
+.soma-values .wp-block-column,
+.soma-value-item {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    transition: all var(--soma-transition);
+    border-radius: var(--soma-radius-lg);
+    position: relative;
+}
+
+.soma-values .wp-block-column:hover,
+.soma-value-item:hover {
+    background: rgba(196,168,130,0.08);
+    transform: translateY(-4px);
+}
+
+.soma-value-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--soma-beige-light), var(--soma-beige));
+    border: 2px solid var(--soma-camel);
+    color: var(--soma-terracotta);
+    font-size: 1.8rem;
+    transition: all var(--soma-transition);
+}
+
+.soma-value-item:hover .soma-value-icon {
+    background: var(--soma-terracotta);
+    color: var(--soma-white);
+    border-color: var(--soma-terracotta);
+    transform: scale(1.1);
+}
+
+.soma-values h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    color: var(--soma-camel);
+    opacity: 0.7;
+}
+
+.soma-values h4,
+.soma-value-item h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   Floating CTA button
+   ============================================ */
+.soma-floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    background: var(--soma-terracotta);
+    color: var(--soma-white);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(184,112,76,0.4);
+    transition: all var(--soma-transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.soma-floating-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.soma-floating-cta:hover {
+    background: var(--soma-terracotta-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(184,112,76,0.45);
+    color: var(--soma-white);
+}
+
+.soma-floating-cta svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   Scroll-to-top button
+   ============================================ */
+.soma-scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 9999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--soma-text);
+    color: var(--soma-white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--soma-shadow-md);
+    transition: all var(--soma-transition);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.soma-scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.soma-scroll-top:hover {
+    background: var(--soma-terracotta);
+    transform: translateY(-3px);
+}
+
+.soma-scroll-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ============================================
+   Horizontal marquee (partner logos or keywords)
+   ============================================ */
+.soma-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--soma-beige-dark);
+    border-bottom: 1px solid var(--soma-beige-dark);
+}
+
+.soma-marquee-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: soma-marquee 30s linear infinite;
+}
+
+.soma-marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--soma-camel);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.soma-marquee-item::after {
+    content: '·';
+    color: var(--soma-beige-dark);
+    font-size: 2rem;
+}
+
+@keyframes soma-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer,
+.ast-footer-overlay,
+.ast-small-footer {
+    background-color: var(--soma-text) !important;
+    color: rgba(255,255,255,0.65) !important;
+}
+
+.site-footer a {
+    color: rgba(255,255,255,0.55) !important;
+    transition: color var(--soma-transition);
+}
+.site-footer a:hover {
+    color: var(--soma-camel) !important;
+}
+
+.site-footer h4,
+.site-footer .widget-title {
+    color: var(--soma-white) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.ast-small-footer {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.82rem;
+}
+
+/* Social */
+.soma-social-links {
+    display: flex;
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    justify-content: center;
+}
+
+.soma-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.7) !important;
+    transition: all var(--soma-transition);
+}
+
+.soma-social-links a:hover {
+    border-color: var(--soma-camel) !important;
+    color: var(--soma-camel) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(196,168,130,0.25);
+}
+
+/* ============================================
+   Cal.com Popup
+   ============================================ */
+#calcom-popup {
+    display: none;
+}
+
+#calcom-popup .popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(61,48,41,0.7);
+    z-index: 99999;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#calcom-popup .popup-content {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(0.95);
+    z-index: 100000;
+    background: var(--soma-white);
+    border-radius: var(--soma-radius-lg);
+    padding: 30px;
+    max-width: 800px;
+    width: 92%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+    animation: soma-popup-in 0.35s ease forwards;
+}
+
+@keyframes soma-popup-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+#calcom-popup .popup-close {
+    position: absolute;
+    top: 10px; right: 14px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--soma-text);
+    z-index: 1;
+    transition: all var(--soma-transition);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+#calcom-popup .popup-close:hover {
+    color: var(--soma-terracotta);
+    background: var(--soma-beige-light);
+}
+
+#calcom-popup h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   WP Simple Pay — Intégration visuelle
+   ============================================ */
+.soma-payment-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Formulaire WP Simple Pay */
+.simpay-form-wrap,
+.simpay-checkout-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.simpay-form-wrap .simpay-form-control {
+    margin-bottom: 1.2rem;
+}
+
+.simpay-form-wrap input[type="text"],
+.simpay-form-wrap input[type="email"],
+.simpay-form-wrap input[type="number"],
+.simpay-form-wrap select {
+    border: 1px solid var(--soma-beige-dark) !important;
+    border-radius: var(--soma-radius) !important;
+    padding: 12px 16px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.9rem !important;
+    transition: border-color var(--soma-transition), box-shadow var(--soma-transition);
+}
+
+.simpay-form-wrap input:focus,
+.simpay-form-wrap select:focus {
+    border-color: var(--soma-camel) !important;
+    box-shadow: 0 0 0 3px rgba(196,168,130,0.15) !important;
+    outline: none !important;
+}
+
+.simpay-form-wrap .simpay-checkout-btn,
+.simpay-form-wrap button[type="submit"],
+.simpay-form-wrap .simpay-payment-btn {
+    background-color: var(--soma-gold) !important;
+    color: var(--soma-white) !important;
+    border: 2px solid var(--soma-gold) !important;
+    border-radius: var(--soma-radius) !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 14px 32px !important;
+    transition: all var(--soma-transition);
+    cursor: pointer;
+    width: 100%;
+}
+
+.simpay-form-wrap .simpay-checkout-btn:hover,
+.simpay-form-wrap button[type="submit"]:hover,
+.simpay-form-wrap .simpay-payment-btn:hover {
+    background-color: #9F7E3E !important;
+    border-color: #9F7E3E !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184,150,78,0.3);
+}
+
+.simpay-form-wrap label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--soma-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Montant affiché */
+.simpay-form-wrap .simpay-total-amount-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--soma-terracotta);
+    font-weight: 600;
+}
+
+/* Features paiement */
+.soma-payment-feature {
+    padding: 1.5rem;
+}
+
+.soma-payment-feature h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0.5rem;
+}
+
+/* ============================================
+   Contact Form 7
+   ============================================ */
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--soma-beige-dark);
+    border-radius: var(--soma-radius);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    background-color: var(--soma-white);
+    transition: border-color var(--soma-transition), box-shadow var(--soma-transition);
+}
+
+.wpcf7 input:focus,
+.wpcf7 textarea:focus {
+    outline: none;
+    border-color: var(--soma-camel);
+    box-shadow: 0 0 0 3px rgba(196,168,130,0.15);
+}
+
+/* ============================================
+   Horaires table
+   ============================================ */
+.soma-horaires-table {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.soma-horaires-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--soma-beige-dark);
+    color: var(--soma-text-light);
+}
+
+.soma-horaires-table td:first-child {
+    font-weight: 500;
+    color: var(--soma-text);
+}
+
+/* ============================================
+   Contact info grid
+   ============================================ */
+.soma-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.soma-contact-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: var(--soma-radius-lg);
+    transition: all var(--soma-transition);
+    border: 1px solid transparent;
+}
+
+.soma-contact-item:hover {
+    background: var(--soma-beige-light);
+    border-color: var(--soma-beige-dark);
+    transform: translateY(-3px);
+}
+
+.soma-contact-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--soma-beige-light);
+    color: var(--soma-terracotta);
+}
+
+.soma-contact-item:hover .soma-contact-icon {
+    background: var(--soma-terracotta);
+    color: var(--soma-white);
+}
+
+.soma-contact-item h3 {
+    color: var(--soma-terracotta) !important;
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   Text highlight / accent
+   ============================================ */
+.soma-highlight {
+    color: var(--soma-terracotta);
+    font-weight: 500;
+}
+
+.soma-big-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--soma-text);
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 2rem auto;
+    text-align: center;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.soma-big-quote::before {
+    content: '\201C';
+    font-size: 6rem;
+    color: var(--soma-camel);
+    opacity: 0.2;
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    line-height: 1;
+}
+
+/* ============================================
+   Astra layout full-width
+   ============================================ */
+.ast-page-builder-template .site-content > .ast-container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.ast-plain-container.ast-no-sidebar main > article {
+    padding: 0;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .soma-section {
+        padding: 4rem 1.5rem;
+    }
+
+    h1, .soma-page-header h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+
+    .soma-hero-split {
+        min-height: auto;
+    }
+
+    .soma-hero-split__text {
+        padding: 4rem 3rem 4rem 5%;
+    }
+
+    .soma-hero-split__text h1 {
+        font-size: 2.4rem;
+    }
+
+    .soma-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .soma-gallery-item:first-child {
+        grid-row: auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .soma-section {
+        padding: 3.5rem 1.2rem;
+    }
+
+    h1, .soma-page-header h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    /* Hero split → empilé sur mobile */
+    .soma-hero-split {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .soma-hero-split__text {
+        padding: 3rem 1.5rem 2rem;
+        text-align: center;
+        max-width: 100%;
+        order: 2;
+    }
+
+    .soma-hero-split__text h1 {
+        font-size: 2rem;
+    }
+
+    .soma-hero-split__line {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .soma-hero-split__desc {
+        max-width: 100%;
+    }
+
+    .soma-hero-split__buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .soma-hero-split__image {
+        order: 1;
+        padding: 2rem 1.5rem 0;
+        min-height: 50vh;
+    }
+
+    .soma-hero-split__frame {
+        width: 85%;
+    }
+
+    .soma-hero-split__deco--circle,
+    .soma-hero-split__deco--dots {
+        display: none;
+    }
+
+    .wp-block-columns {
+        flex-direction: column !important;
+    }
+
+    .soma-page-header {
+        padding: 3.5rem 1.2rem 2rem;
+    }
+
+    .soma-services-grid,
+    .soma-testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soma-contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .soma-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.3rem;
+    }
+
+    .wp-block-button__link,
+    .ast-button,
+    input[type="submit"],
+    .btn-soma,
+    .soma-rdv-btn {
+        padding: 12px 24px !important;
+        width: 100%;
+    }
+
+    .soma-values .wp-block-column {
+        padding: 1.5rem 1rem;
+    }
+
+    .soma-stat-number {
+        font-size: 2.5rem;
+    }
+
+    .soma-big-quote {
+        font-size: 1.4rem;
+    }
+
+    .soma-floating-cta {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 12px 18px;
+        font-size: 0.72rem;
+    }
+
+    .soma-scroll-top {
+        bottom: 1rem;
+        left: 1rem;
+        width: 38px;
+        height: 38px;
+    }
+
+    .soma-testimonials-wrapper {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .soma-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soma-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .soma-hero-split__text h1 {
+        font-size: 1.6rem;
+    }
+
+    .soma-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile header */
+@media (max-width: 921px) {
+    .ast-header-break-point .main-header-menu {
+        background-color: var(--soma-white);
+    }
+
+    .ast-header-break-point .main-header-menu a {
+        border-bottom: 1px solid var(--soma-beige-dark);
+    }
+
+    .ast-header-break-point .main-header-menu a::after {
+        display: none;
+    }
+}
+
+/* ============================================
+   Utility
+   ============================================ */
+.soma-text-center { text-align: center; }
+.soma-full-width { width: 100%; }
+.soma-mt-1 { margin-top: 1rem; }
+.soma-mt-2 { margin-top: 2rem; }
+.soma-mt-3 { margin-top: 3rem; }
+.soma-mb-0 { margin-bottom: 0; }
+
+/* Constrained content width */
+.soma-section > .wp-block-group__inner-container {
+    max-width: var(--soma-container);
+    margin: 0 auto;
+}
+
+/* Decorative line above section */
+.soma-section-decorated::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--soma-camel);
+    margin: 0 auto 2rem;
+}

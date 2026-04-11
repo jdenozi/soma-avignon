@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: soma_wp
+      MYSQL_USER: soma
+      MYSQL_PASSWORD: somapass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8090:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: soma_wp
+      WORDPRESS_DB_USER: soma
+      WORDPRESS_DB_PASSWORD: somapass
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content/themes/soma-avignon:/var/www/html/wp-content/themes/soma-avignon
+
+volumes:
+  db_data:
+  wp_data:
