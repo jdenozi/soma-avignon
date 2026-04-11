@@ -180,7 +180,7 @@ function soma_register_post_types() {
         ),
         'public'       => true,
         'has_archive'  => true,
-        'rewrite'      => array('slug' => 'prestations'),
+        'rewrite'      => array('slug' => 'nos-prestations'),
         'supports'     => array('title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'),
         'menu_icon'    => 'dashicons-heart',
         'show_in_rest' => true,
