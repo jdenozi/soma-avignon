@@ -125,6 +125,9 @@ jQuery(document).ready(function($) {
         var hash = this.getAttribute('href');
         if (hash.length <= 1) return;
 
+        // Ne pas intercepter les liens RDV (gérés par calcom-popup.js)
+        if (hash === '#rdv' || hash === '#RDV') return;
+
         var $target = $(hash);
         if ($target.length) {
             e.preventDefault();
