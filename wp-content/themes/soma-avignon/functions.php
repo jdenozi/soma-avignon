@@ -513,12 +513,13 @@ function soma_astra_footer_social() {
 }
 add_action('astra_footer_content_top', 'soma_astra_footer_social');
 
-function soma_footer_credits() {
-    echo '<div class="soma-footer-credits">';
-    echo '<p>Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a></p>';
-    echo '</div>';
-}
-add_action('astra_footer_content_bottom', 'soma_footer_credits');
+// Replace Astra default copyright with TempoHub credit
+add_filter('astra_footer_copyright_default', function() {
+    return 'Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a>';
+});
+add_filter('astra_get_option_footer-copyright-editor', function() {
+    return 'Propulsé par <a href="https://tempo-hub.fr" target="_blank" rel="noopener noreferrer">TempoHub</a>';
+});
 
 /* ============================================
    Astra hooks — Instagram icon in header

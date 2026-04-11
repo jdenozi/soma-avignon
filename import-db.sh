@@ -61,6 +61,13 @@ $DC exec -T db mariadb -u soma -psomapass soma_wp < /tmp/soma-import.sql
 
 rm -f /tmp/soma-import.sql
 
+# ─── Copy versioned uploads ───
+if [ -d "$APP_DIR/wp-content/uploads" ]; then
+  echo "→ Copie des uploads versionnés..."
+  $DC cp "$APP_DIR/wp-content/uploads/." wordpress:/var/www/html/wp-content/uploads/
+  $DC exec -T wordpress chown -R www-data:www-data /var/www/html/wp-content/uploads/
+fi
+
 # ─── Install WP-CLI and flush ───
 echo "→ Flush du cache WordPress..."
 $DC exec -T wordpress bash -c 'which wp > /dev/null 2>&1 || (curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp)'
