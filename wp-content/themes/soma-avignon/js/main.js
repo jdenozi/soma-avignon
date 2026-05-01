@@ -99,27 +99,6 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // ── Scroll-to-top button ──
-    var scrollTopHTML = '<button class="soma-scroll-top" aria-label="Retour en haut">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-        '<polyline points="18 15 12 9 6 15"></polyline>' +
-        '</svg></button>';
-    $('body').append(scrollTopHTML);
-
-    var $scrollTop = $('.soma-scroll-top');
-
-    $(window).on('scroll', function() {
-        if ($(this).scrollTop() > 600) {
-            $scrollTop.addClass('visible');
-        } else {
-            $scrollTop.removeClass('visible');
-        }
-    });
-
-    $scrollTop.on('click', function() {
-        $('html, body').animate({ scrollTop: 0 }, 700, 'swing');
-    });
-
     // ── Smooth scroll for anchor links ──
     $(document).on('click', 'a[href^="#"]', function(e) {
         var hash = this.getAttribute('href');
@@ -160,4 +139,81 @@ jQuery(document).ready(function($) {
         var $clone = $marquee.children().clone();
         $marquee.append($clone);
     }
+
+    // ── Carrousel témoignages ──
+    $('[data-soma-carousel]').each(function() {
+        var $carousel = $(this);
+        var $track    = $carousel.find('.soma-carousel-track');
+        var $cards    = $track.find('.soma-testimonial');
+        var $prev     = $carousel.find('.soma-carousel-prev');
+        var $next     = $carousel.find('.soma-carousel-next');
+        var $dots     = $carousel.find('.soma-carousel-dots');
+        if (!$track.length || !$cards.length) return;
+
+        function visibleCount() {
+            var w = $track[0].clientWidth;
+            var card = $cards.first()[0].getBoundingClientRect().width;
+            return Math.max(1, Math.round(w / card));
+        }
+
+        function pageCount() {
+            return Math.max(1, $cards.length - visibleCount() + 1);
+        }
+
+        function buildDots() {
+            $dots.empty();
+            var n = pageCount();
+            if (n <= 1) {
+                $dots.hide();
+                $prev.hide(); $next.hide();
+                return;
+            }
+            $dots.show(); $prev.show(); $next.show();
+            for (var i = 0; i < n; i++) {
+                $('<button type="button" role="tab" aria-label="Aller au témoignage ' + (i + 1) + '"></button>')
+                    .attr('data-index', i)
+                    .appendTo($dots);
+            }
+        }
+
+        function activeIndex() {
+            var card = $cards.first()[0].getBoundingClientRect().width;
+            var gap  = parseFloat(getComputedStyle($track[0]).columnGap || getComputedStyle($track[0]).gap || 0) || 0;
+            return Math.round($track[0].scrollLeft / (card + gap));
+        }
+
+        function syncDots() {
+            var i = activeIndex();
+            $dots.children().each(function(idx) {
+                $(this).toggleClass('is-active', idx === i);
+            });
+            $prev.prop('disabled', i <= 0);
+            $next.prop('disabled', i >= pageCount() - 1);
+        }
+
+        function scrollToIndex(i) {
+            var card = $cards.first()[0].getBoundingClientRect().width;
+            var gap  = parseFloat(getComputedStyle($track[0]).columnGap || getComputedStyle($track[0]).gap || 0) || 0;
+            $track[0].scrollTo({ left: i * (card + gap), behavior: 'smooth' });
+        }
+
+        $prev.on('click', function() { scrollToIndex(Math.max(0, activeIndex() - 1)); });
+        $next.on('click', function() { scrollToIndex(Math.min(pageCount() - 1, activeIndex() + 1)); });
+        $dots.on('click', 'button', function() { scrollToIndex(parseInt($(this).attr('data-index'), 10)); });
+
+        var scrollTimer;
+        $track.on('scroll', function() {
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(syncDots, 60);
+        });
+
+        var resizeTimer;
+        $(window).on('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() { buildDots(); syncDots(); }, 120);
+        });
+
+        buildDots();
+        syncDots();
+    });
 });
