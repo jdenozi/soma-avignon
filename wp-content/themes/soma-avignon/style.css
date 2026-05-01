@@ -829,6 +829,12 @@ input[type="submit"]:hover,
     gap: 2rem;
 }
 
+/* Override grid when used as carousel */
+.soma-testimonials-grid.soma-carousel-track {
+    display: flex;
+    grid-template-columns: none;
+}
+
 /* ── Carrousel témoignages ── */
 .soma-carousel {
     position: relative;

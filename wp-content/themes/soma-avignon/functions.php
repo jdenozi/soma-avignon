@@ -357,7 +357,7 @@ function soma_temoignages_shortcode($atts) {
 
 $output  = '<div class="soma-carousel" data-soma-carousel>';
     $output .= '<button type="button" class="soma-carousel-btn soma-carousel-prev" aria-label="Témoignage précédent">&#8249;</button>';
-    $output .= '<div class="soma-carousel-track soma-stagger">';
+    $output .= '<div class="soma-testimonials-grid soma-carousel-track soma-stagger">';
 
     while ($query->have_posts()) {
         $query->the_post();
@@ -383,7 +383,7 @@ add_shortcode('soma_temoignages', 'soma_temoignages_shortcode');
 // [soma_stats] — Compteurs animés
 function soma_stats_shortcode($atts) {
     $atts = shortcode_atts(array(
-'items' => '500+|Clientes accompagnées,5|Années d\'expérience,15+|Soins proposés,100%|Bienveillance',
+'items' => '500+|Clientes accompagnées,+10|Années d\'expérience,4|Soins proposés,100%|Bienveillance',
     ), $atts);
 
     $items = explode(',', $atts['items']);
