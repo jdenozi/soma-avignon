@@ -337,7 +337,9 @@ function soma_temoignages_shortcode($atts) {
 
     if (!$query->have_posts()) return '';
 
-    $output = '<div class="soma-testimonials-grid soma-stagger">';
+$output  = '<div class="soma-carousel" data-soma-carousel>';
+    $output .= '<button type="button" class="soma-carousel-btn soma-carousel-prev" aria-label="Témoignage précédent">&#8249;</button>';
+    $output .= '<div class="soma-carousel-track soma-stagger">';
 
     while ($query->have_posts()) {
         $query->the_post();
@@ -351,6 +353,10 @@ function soma_temoignages_shortcode($atts) {
     }
 
     $output .= '</div>';
+    $output .= '<button type="button" class="soma-carousel-btn soma-carousel-next" aria-label="Témoignage suivant">&#8250;</button>';
+    $output .= '<div class="soma-carousel-dots" role="tablist" aria-label="Navigation témoignages"></div>';
+    $output .= '</div>';
+
     wp_reset_postdata();
     return $output;
 }
@@ -359,7 +365,7 @@ add_shortcode('soma_temoignages', 'soma_temoignages_shortcode');
 // [soma_stats] — Compteurs animés
 function soma_stats_shortcode($atts) {
     $atts = shortcode_atts(array(
-        'items' => '500+|Clientes accompagnées,5|Années d\'expérience,15+|Soins proposés,100%|Bienveillance',
+'items' => '500+|Clientes accompagnées,5|Années d\'expérience,15+|Soins proposés,100%|Bienveillance',
     ), $atts);
 
     $items = explode(',', $atts['items']);
