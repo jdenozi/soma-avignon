@@ -11,12 +11,16 @@ else
   exit 1
 fi
 
-WP="$DC exec -T wordpress wp --allow-root"
-
 echo "╔══════════════════════════════════════╗"
 echo "║  SOMA Avignon — Setup               ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
+
+# ─── Install WP-CLI in container ───
+echo "→ Installation de WP-CLI dans le container..."
+$DC exec -T wordpress bash -c 'which wp > /dev/null 2>&1 || (curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && echo "  WP-CLI installé")'
+
+WP="$DC exec -T wordpress wp --allow-root"
 
 # ─── Wait for WordPress to be ready ───
 echo "→ Attente de WordPress..."
@@ -128,7 +132,7 @@ echo "→ Configuration du thème..."
 $WP theme mod set soma_calcom_url "https://calcom.tempo-hub.fr/laurie-couderchet"
 $WP theme mod set soma_phone "06 50 85 21 67"
 $WP theme mod set soma_email "contact@soma-avignon.fr"
-$WP theme mod set soma_address "20 Boulevard Paul Mariéton, 84000 Avignon"
+$WP theme mod set soma_address "20 Bd Paul Mariéton, 84000 Avignon"
 $WP theme mod set soma_hours "Lundi - Vendredi : 09h30 - 17h30"
 $WP theme mod set soma_instagram "https://www.instagram.com/soma.avignon/"
 
@@ -150,32 +154,47 @@ if [ -z "$EXISTING_PRESTA" ]; then
   $WP post meta update "$P3" _soma_price "65€"
   $WP post meta update "$P3" _soma_duration "60 min"
 
-  echo "  3 prestations créées"
+  P4=$($WP post create --post_type=prestation --post_title="Soin des Cheveux" --post_status=publish --post_excerpt="Un rituel capillaire holistique qui prend soin de la fibre, du cuir chevelu et de l'énergie du cuir capillaire. Coupe, soin et conseils personnalisés." --menu_order=4 --porcelain)
+  $WP post meta update "$P4" _soma_price "Sur devis"
+  $WP post meta update "$P4" _soma_duration "60 min"
+
+  echo "  4 prestations créées"
 else
   echo "  Prestations déjà existantes, skip"
 fi
 
-# ─── Témoignages exemples ───
+# ─── Témoignages (avis Google réels) ───
 echo "→ Création des témoignages..."
 EXISTING_TEMO=$($WP post list --post_type=temoignage --format=ids 2>/dev/null)
 if [ -z "$EXISTING_TEMO" ]; then
-  T1=$($WP post create --post_type=temoignage --post_title="Marie L." --post_status=publish --post_content="Un moment de pure détente. Le massage crânien m'a permis de lâcher prise complètement. Je recommande les yeux fermés !" --porcelain)
+  T1=$($WP post create --post_type=temoignage --post_title="Julie Boulangier" --post_status=publish --post_content="Franchement, après toutes les déceptions que j'ai eues chez des coiffeurs, je voulais même plus aller me faire couper les cheveux. Et puis j'ai découvert Laurie chez Soma. Elle écoute vraiment, prend le temps de comprendre ce que je veux et ce dont mes cheveux ont besoin. Et alors les soins énergétiques… wow ! C'est une vraie pause bien-être. Mes cheveux sont magnifiques et après chaque séance je me sens énergétiquement alignée." --porcelain)
   $WP post meta update "$T1" _soma_stars 5
 
-  T2=$($WP post create --post_type=temoignage --post_title="Sophie D." --post_status=publish --post_content="Laurie est d'une douceur incroyable. Son massage prénatal m'a fait un bien fou pendant ma grossesse. Merci !" --porcelain)
+  T2=$($WP post create --post_type=temoignage --post_title="Anthéa Massot" --post_status=publish --post_content="Une journée absolument exceptionnelle avec Laurie de Soma. Le balayage est incroyable : une maîtrise parfaite de la couleur, un résultat naturel, lumineux. J'ai également fait un soin énergétique avec massage de 45 minutes, un vrai lâcher-prise, une sensation d'apaisement immédiat. C'est bien plus qu'un rendez-vous chez le coiffeur, c'est une expérience globale, humaine, sensorielle." --porcelain)
   $WP post meta update "$T2" _soma_stars 5
 
-  T3=$($WP post create --post_type=temoignage --post_title="Camille R." --post_status=publish --post_content="L'espace est chaleureux et apaisant. On se sent tout de suite en confiance. Une vraie parenthèse de bien-être." --porcelain)
+  T3=$($WP post create --post_type=temoignage --post_title="Marion Gaillardet" --post_status=publish --post_content="Un vrai moment de reconnexion à soi ! Je viens exprès de Paris car je n'ai jamais trouvé aussi bien dans la capitale. Laurie a un vrai talent — la couleur et la coupe sont toujours parfaites — mais au-delà de ça, elle est à l'écoute, douce et profondément bienveillante. On se sent immédiatement bien dans ce petit cocon qu'elle a créé." --porcelain)
   $WP post meta update "$T3" _soma_stars 5
 
-  echo "  3 témoignages créés"
+  T4=$($WP post create --post_type=temoignage --post_title="Suade Hellegouarch" --post_status=publish --post_content="Toujours top, très à l'écoute et notre satisfaction est son credo (mes enfants sont fans aussi). Beaucoup d'expertise, du conseil averti et un moment de détente assuré. J'ai également testé le massage et j'y reviendrai avec plaisir. J'ai trouvé mon salon personnalisé !" --porcelain)
+  $WP post meta update "$T4" _soma_stars 5
+
+  T5=$($WP post create --post_type=temoignage --post_title="Elodie DS" --post_status=publish --post_content="Laurie est absolument exceptionnelle. Elle a pris le temps de m'écouter, comprendre mes envies, et me donner des conseils. Chaque geste est délicat et le shampoing est un moment de pure détente. Elle ne se contente pas de couper, elle offre une véritable parenthèse de bien-être avec un résultat impeccable." --porcelain)
+  $WP post meta update "$T5" _soma_stars 5
+
+  T6=$($WP post create --post_type=temoignage --post_title="Julien" --post_status=publish --post_content="Laurie est une coiffeuse exceptionnelle. Je ressors à chaque fois très satisfait et ma coupe tient beaucoup plus longtemps. Du shampooing avec un massage relaxant jusqu'à la coupe réalisée avec harmonie, tout est parfait." --porcelain)
+  $WP post meta update "$T6" _soma_stars 5
+
+  T7=$($WP post create --post_type=temoignage --post_title="Géraldine Dupuis" --post_status=publish --post_content="Laurie est aujourd'hui ma collègue pour les soins Rebozo et massages à quatre mains, et c'est un vrai bonheur de travailler à ses côtés ! Elle a une qualité de présence rare et une grande justesse dans ce qu'elle fait. C'est aussi ma coiffeuse depuis plus de 15 ans, et je ne confierais mes cheveux à personne d'autre." --porcelain)
+  $WP post meta update "$T7" _soma_stars 5
+
+  T8=$($WP post create --post_type=temoignage --post_title="Lucie" --post_status=publish --post_content="J'ai enfin trouvé la personne pépite pour prendre soin de mes cheveux. Laurie est une coiffeuse talentueuse. Elle écoute avec attention, conseille avec pertinence, travaille avec sérieux. Elle va au-delà d'une prestation traditionnelle, c'est un accompagnement." --porcelain)
+  $WP post meta update "$T8" _soma_stars 5
+
+  echo "  8 témoignages créés (avis Google réels)"
 else
   echo "  Témoignages déjà existants, skip"
 fi
-
-# ─── WP-CLI dans le container ───
-echo "→ Installation de WP-CLI dans le container..."
-$DC exec -T wordpress bash -c 'which wp || (curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp)' 2>/dev/null || true
 
 echo ""
 echo "╔══════════════════════════════════════╗"

@@ -165,6 +165,33 @@ img {
     color: var(--soma-terracotta) !important;
 }
 
+/* Instagram icon in header */
+.soma-header-social {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.soma-header-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--soma-text-light) !important;
+    transition: all var(--soma-transition);
+    border: 1px solid var(--soma-beige-dark);
+}
+
+.soma-header-social a:hover {
+    color: var(--soma-terracotta) !important;
+    border-color: var(--soma-terracotta);
+    transform: translateY(-50%) translateY(-1px);
+}
+
 /* Menu CTA (Prendre RDV) */
 .nav-cta > a {
     background-color: var(--soma-terracotta) !important;
@@ -667,6 +694,18 @@ input[type="submit"]:hover,
     position: relative;
 }
 
+/* Placeholder quand pas d'image */
+.soma-service-card .soma-card-placeholder {
+    height: 280px;
+    background: linear-gradient(135deg, var(--soma-beige-light) 0%, var(--soma-beige) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--soma-camel);
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
 /* Gradient overlay on card images */
 .soma-service-card .soma-card-img::after {
     content: '';
@@ -788,6 +827,105 @@ input[type="submit"]:hover,
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
+}
+
+/* ── Carrousel témoignages ── */
+.soma-carousel {
+    position: relative;
+    padding: 0 3rem;
+}
+
+.soma-carousel-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0.5rem;
+}
+
+.soma-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.soma-carousel-track .soma-testimonial {
+    flex: 0 0 100%;
+    min-width: 0;
+    max-width: 720px;
+    margin: 0 auto;
+    scroll-snap-align: center;
+}
+
+.soma-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--soma-camel);
+    background: var(--soma-white);
+    color: var(--soma-camel-dark);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--soma-transition);
+    box-shadow: var(--soma-shadow-sm, 0 2px 8px rgba(0,0,0,0.06));
+}
+
+.soma-carousel-btn:hover {
+    background: var(--soma-camel);
+    color: var(--soma-white);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.soma-carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.soma-carousel-prev { left: 0; }
+.soma-carousel-next { right: 0; }
+
+.soma-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.soma-carousel-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--soma-beige-dark);
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--soma-transition);
+}
+
+.soma-carousel-dots button.is-active {
+    background: var(--soma-camel);
+    width: 24px;
+    border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+    .soma-carousel { padding: 0 2.5rem; }
+    .soma-carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.4rem;
+    }
 }
 
 .soma-testimonial {
@@ -1113,43 +1251,7 @@ input[type="submit"]:hover,
 /* ============================================
    Scroll-to-top button
    ============================================ */
-.soma-scroll-top {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 9999;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--soma-text);
-    color: var(--soma-white);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--soma-shadow-md);
-    transition: all var(--soma-transition);
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-}
-
-.soma-scroll-top.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
-
-.soma-scroll-top:hover {
-    background: var(--soma-terracotta);
-    transform: translateY(-3px);
-}
-
-.soma-scroll-top svg {
-    width: 20px;
-    height: 20px;
-}
+.soma-scroll-top { display: none !important; }
 
 /* ============================================
    Horizontal marquee (partner logos or keywords)
@@ -1194,11 +1296,24 @@ input[type="submit"]:hover,
    Footer
    ============================================ */
 .site-footer,
-.ast-footer-overlay,
-.ast-small-footer {
+.site-footer > *,
+.site-footer .ast-footer-overlay,
+.site-footer .ast-small-footer,
+.site-footer .site-below-footer-wrap,
+.site-footer .site-above-footer-wrap,
+.site-footer .site-primary-footer-wrap,
+.site-footer .ast-builder-grid-row-container,
+.site-footer .ast-builder-grid-row-container-inner,
+.site-footer .ast-builder-grid-row,
+.site-footer .site-footer-section,
+.site-footer .ast-builder-footer-grid-columns,
+.site-footer .ast-footer-copyright {
     background-color: var(--soma-text) !important;
     color: rgba(255,255,255,0.65) !important;
 }
+
+/* Astra below-footer-wrap is empty (copyright removed) — hide it */
+.site-footer .site-below-footer-wrap { display: none !important; }
 
 .site-footer a {
     color: rgba(255,255,255,0.55) !important;
@@ -1222,6 +1337,29 @@ input[type="submit"]:hover,
 .ast-small-footer {
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.82rem;
+}
+
+/* Footer credits */
+.soma-footer-credits {
+    text-align: center;
+    padding: 1rem 0 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.soma-footer-credits p {
+    font-size: 0.75rem !important;
+    color: rgba(255,255,255,0.4) !important;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.soma-footer-credits a {
+    color: var(--soma-camel) !important;
+    font-weight: 500;
+}
+
+.soma-footer-credits a:hover {
+    color: var(--soma-white) !important;
 }
 
 /* Social */
@@ -1547,14 +1685,33 @@ input[type="submit"]:hover,
 /* ============================================
    Astra layout full-width
    ============================================ */
-.ast-page-builder-template .site-content > .ast-container {
+.ast-page-builder-template .site-content > .ast-container,
+.ast-plain-container .site-content > .ast-container,
+.site-content > .ast-container {
     max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.ast-plain-container.ast-no-sidebar main > article,
+.site-content article.post,
+.site-content article.page {
+    padding: 0;
+    margin: 0;
+}
+
+.site-content #primary,
+.site-content #main {
+    padding: 0;
+    margin: 0;
+}
+
+.site-content .entry-content {
+    margin: 0;
     padding: 0;
 }
 
-.ast-plain-container.ast-no-sidebar main > article {
-    padding: 0;
-}
+#content { padding-bottom: 0 !important; }
 
 /* ============================================
    Responsive
@@ -1695,13 +1852,6 @@ input[type="submit"]:hover,
         right: 1rem;
         padding: 12px 18px;
         font-size: 0.72rem;
-    }
-
-    .soma-scroll-top {
-        bottom: 1rem;
-        left: 1rem;
-        width: 38px;
-        height: 38px;
     }
 
     .soma-testimonials-wrapper {

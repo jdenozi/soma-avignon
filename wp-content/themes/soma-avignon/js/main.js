@@ -99,27 +99,6 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // ── Scroll-to-top button ──
-    var scrollTopHTML = '<button class="soma-scroll-top" aria-label="Retour en haut">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-        '<polyline points="18 15 12 9 6 15"></polyline>' +
-        '</svg></button>';
-    $('body').append(scrollTopHTML);
-
-    var $scrollTop = $('.soma-scroll-top');
-
-    $(window).on('scroll', function() {
-        if ($(this).scrollTop() > 600) {
-            $scrollTop.addClass('visible');
-        } else {
-            $scrollTop.removeClass('visible');
-        }
-    });
-
-    $scrollTop.on('click', function() {
-        $('html, body').animate({ scrollTop: 0 }, 700, 'swing');
-    });
-
     // ── Smooth scroll for anchor links ──
     $(document).on('click', 'a[href^="#"]', function(e) {
         var hash = this.getAttribute('href');
